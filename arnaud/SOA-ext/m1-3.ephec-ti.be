@@ -1,11 +1,11 @@
 $ORIGIN m1-3.ephec-ti.be.
 $TTL 604800
 @       IN      SOA     ns.m1-3.ephec-ti.be. a.leveau.students.ephec.be. (
-                        1           ; Serial
-                        604800      ; Refresh
-                        86400       ; Retry
+                        2021081814           ; Serial
+                        43200      ; Refresh
+                        7200       ; Retry
                         2419200     ; Expire
-                        604800 )    ; Negative Cache TTL
+                        86400 )    ; Negative Cache TTL
 ;
 ; name servers - NS record
 @           IN      NS      ns.m1-3.ephec-ti.be.

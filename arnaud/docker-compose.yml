@@ -36,6 +36,22 @@ services:
       - ./web-dmz/sites-available/:/etc/apache2/sites-available/
       - ./web-dmz/apache2.conf:/etc/apache2/apache2.conf
     container_name: web-dmz
+	
+	database:
+	    build: 
+	      context: ./Db
+	      dockerfile: Dockerfile
+	    command: --default-authentication-plugin=mysql_native_password
+	    ports:
+	      - "5000:3306"
+	    networks:
+	      local_net:
+	          ipv4_address: 172.16.0.5
+	    volumes:
+	      - ./Db/sql/:/data/
+	    environment:
+	      MYSQL_ROOT_PASSWORD: sysadmin
+	    container_name: mysql-db
 
 
 ##############################################
@@ -50,5 +66,12 @@ networks:
         config:
             - subnet: 172.16.1.0/24
               gateway: 172.16.1.1
+
+  local_net:
+     ipam:
+        driver: default
+        config:
+            - subnet: 172.16.0.0/24
+              gateway:  172.16.0.1
 
 
